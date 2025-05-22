@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
@@ -50,7 +51,7 @@ const Hero = () => {
               A WL Energia Solar oferece soluções completas em energia solar para sua casa ou empresa em São Gabriel - RS e região.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in delay-200">
-              <Button className="bg-wl-yellow text-wl-blue hover:bg-white hover:text-wl-blue transition-all text-lg px-8 py-6">
+              <Button className="bg-wl-blue text-white hover:bg-wl-yellow hover:text-wl-blue transition-all text-lg px-8 py-6">
                 <a href="#servicos">Nossos Serviços</a>
               </Button>
               <Button variant="outline" className="bg-wl-yellow text-wl-blue hover:bg-white hover:text-wl-blue transition-all text-lg px-8 py-6">
