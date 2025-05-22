@@ -77,15 +77,11 @@ const Carousel = React.forwardRef<
     }, [])
 
     const scrollPrev = React.useCallback(() => {
-      api?.scrollPrev({
-        duration: 500, // Add a consistent duration for manual navigation
-      })
+      api?.scrollPrev()
     }, [api])
 
     const scrollNext = React.useCallback(() => {
-      api?.scrollNext({
-        duration: 500, // Add a consistent duration for manual navigation
-      })
+      api?.scrollNext()
     }, [api])
 
     const handleKeyDown = React.useCallback(
