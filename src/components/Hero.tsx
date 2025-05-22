@@ -11,14 +11,15 @@ const Hero = () => {
   ];
   
   return (
-    <section id="inicio" className="relative pt-24 pb-16 md:pt-32 md:pb-24 min-h-screen flex items-center w-full overflow-hidden">
+    <section id="inicio" className="relative pt-24 pb-16 md:pt-32 md:pb-24 min-h-screen flex items-center w-full overflow-hidden bg-gray-900">
       {/* Background Image Carousel */}
       <HeroCarousel backgroundImages={backgroundImages} />
 
       {/* Content */}
       <HeroContent />
       
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent z-10"></div>
+      {/* Changed from white to dark gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-gray-900 to-transparent z-10"></div>
     </section>
   );
 };

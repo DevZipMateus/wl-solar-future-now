@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   text-align: center;
+  background-color: #111827; /* Dark gray background (gray-900) */
 }
 
 /* Keep animation keyframes and other existing styles */

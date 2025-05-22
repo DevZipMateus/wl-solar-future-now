@@ -118,7 +118,7 @@ const HeroCarousel = ({ backgroundImages }: HeroCarouselProps) => {
   };
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden w-full h-full">
+    <div className="absolute inset-0 z-0 overflow-hidden w-full h-full bg-gray-900">
       {allImagesLoaded ? (
         <Carousel 
           className="w-full h-full" 
