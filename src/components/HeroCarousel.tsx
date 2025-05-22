@@ -4,7 +4,7 @@ import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/com
 
 interface HeroCarouselProps {
   backgroundImages: string[];
-  disableSliding?: boolean; // Added new prop
+  disableSliding?: boolean;
 }
 
 const HeroCarousel = ({ backgroundImages, disableSliding = false }: HeroCarouselProps) => {
@@ -85,7 +85,7 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false }: HeroCarousel
       }, 6000); // 6 seconds between slides for better viewing
       console.log("Auto-rotation enabled with 6-second interval");
     } else {
-      console.log("Auto-rotation disabled");
+      console.log("Auto-rotation disabled - static images only");
     }
     
     return () => {
@@ -138,7 +138,7 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false }: HeroCarousel
             skipSnaps: false,
             dragFree: false,
             align: "center",
-            // Use watchDrag instead of draggable to control drag behavior
+            // Completely disable both sliding and interaction when disableSliding is true
             watchDrag: !disableSliding
           }} 
           setApi={setApi}
