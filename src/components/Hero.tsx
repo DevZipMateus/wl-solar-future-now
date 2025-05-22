@@ -10,9 +10,9 @@ import {
 
 const Hero = () => {
   const backgroundImages = [
-    "/lovable-uploads/1be4aba6-22f7-4e8c-8e73-e3eb18e59acd.png",
-    "/lovable-uploads/8e9e89f6-42b7-4da0-8544-725a86557f56.png",
-    "/lovable-uploads/eaf01af4-8f95-4215-bdd2-1674d02f3159.png",
+    "/lovable-uploads/06a4dc1b-d91b-49af-9c2c-190a4d378890.png",
+    "/lovable-uploads/a811976c-c067-46dd-8084-73d192ecb1f5.png",
+    "/lovable-uploads/ae3f684c-ff21-48e8-baca-36cb142dbb2c.png",
   ];
   
   const [api, setApi] = useState<CarouselApi | null>(null);
