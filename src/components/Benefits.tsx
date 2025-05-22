@@ -25,6 +25,15 @@ const Benefits = () => {
     }
   ];
 
+  const images = [
+    "/lovable-uploads/1610c51f-327c-42ab-a658-76ca5e4f29f4.png",
+    "/lovable-uploads/475d8185-2496-42ef-93d1-b86da422edd7.png",
+    "/lovable-uploads/f3550bfc-bf54-4241-bed0-cb0bcf51c3be.png",
+    "/lovable-uploads/6ebb5d3b-a4fb-4799-8a66-a5a8f1348ae1.png",
+    "/lovable-uploads/1610c51f-327c-42ab-a658-76ca5e4f29f4.png",
+    "/lovable-uploads/475d8185-2496-42ef-93d1-b86da422edd7.png"
+  ];
+
   return (
     <section className="py-16 bg-wl-blue text-white">
       <div className="container mx-auto px-4">
@@ -50,11 +59,11 @@ const Benefits = () => {
         </div>
 
         <div className="mt-12 grid grid-cols-2 md:grid-cols-3 gap-4">
-          {[1, 2, 3, 4, 5, 6].map((num) => (
-            <div key={num} className="rounded-lg overflow-hidden aspect-ratio-1">
+          {images.map((image, index) => (
+            <div key={index} className="rounded-lg overflow-hidden aspect-square">
               <img 
-                src={`/lovable-uploads/671225a6-7205-4a30-a8ce-a37f0916de6b.jpg`} 
-                alt={`Instalação de painéis solares ${num}`}
+                src={image} 
+                alt={`Instalação de painéis solares ${index + 1}`}
                 className="w-full h-full object-cover"
               />
             </div>

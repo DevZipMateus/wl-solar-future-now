@@ -11,8 +11,10 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const Hero = () => {
   const images = [
-    "/lovable-uploads/671225a6-7205-4a30-a8ce-a37f0916de6b.jpg",
-    "/lovable-uploads/0cbc485a-2ef6-4b0e-a6b5-6300c4b1f4f4.png"
+    "/lovable-uploads/1610c51f-327c-42ab-a658-76ca5e4f29f4.png",
+    "/lovable-uploads/475d8185-2496-42ef-93d1-b86da422edd7.png",
+    "/lovable-uploads/f3550bfc-bf54-4241-bed0-cb0bcf51c3be.png",
+    "/lovable-uploads/6ebb5d3b-a4fb-4799-8a66-a5a8f1348ae1.png"
   ];
   
   return (
