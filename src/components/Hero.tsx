@@ -3,16 +3,15 @@ import HeroCarousel from "./HeroCarousel";
 import HeroContent from "./HeroContent";
 
 const Hero = () => {
-  // Removed the middle image to have only two images in the carousel
+  // Using only one image in the carousel
   const backgroundImages = [
-    "/lovable-uploads/eaf01af4-8f95-4215-bdd2-1674d02f3159.png",
-    "/lovable-uploads/1be4aba6-22f7-4e8c-8e73-e3eb18e59acd.png"
+    "/lovable-uploads/eaf01af4-8f95-4215-bdd2-1674d02f3159.png"
   ];
   
   return (
     <section id="inicio" className="relative pt-24 pb-16 md:pt-32 md:pb-24 min-h-screen flex items-center w-full overflow-hidden bg-gray-900">
-      {/* Background Image Carousel with enabled sliding and 2 second interval */}
-      <HeroCarousel backgroundImages={backgroundImages} disableSliding={false} slideInterval={2000} />
+      {/* Background Image Carousel with a single image */}
+      <HeroCarousel backgroundImages={backgroundImages} disableSliding={true} slideInterval={2000} />
 
       {/* Content */}
       <HeroContent />

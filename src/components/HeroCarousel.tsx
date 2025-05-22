@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 
@@ -107,27 +106,16 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false, slideInterval 
 
   // Create indicator dots for navigation - only if sliding is not disabled and there are multiple images
   const renderIndicators = () => {
+    // Only show indicators if we have more than one image AND sliding is enabled
     if (disableSliding || backgroundImages.length <= 1) return null;
     
+    // For our specific case, we only want to show one indicator dot
     return (
       <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-2 z-20">
-        {backgroundImages.map((_, index) => (
-          <button
-            key={index}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentIndex 
-                ? "bg-wl-yellow scale-110" 
-                : "bg-white/50 hover:bg-white/80"
-            }`}
-            onClick={() => {
-              if (api) {
-                setIsTransitioning(true);
-                api.scrollTo(index);
-              }
-            }}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+        <button
+          className="w-3 h-3 rounded-full transition-all duration-300 bg-wl-yellow scale-110"
+          aria-label="Current slide"
+        />
       </div>
     );
   };
@@ -174,7 +162,7 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false, slideInterval 
         </div>
       )}
       
-      {/* Navigation Indicators - only shown when sliding is enabled */}
+      {/* Navigation Indicators - modified to show only one dot */}
       {allImagesLoaded && renderIndicators()}
     </div>
   );
