@@ -135,25 +135,14 @@ const HeroCarousel = ({ backgroundImages }: HeroCarouselProps) => {
             {backgroundImages.map((image, index) => (
               <CarouselItem key={index} className="h-full w-full p-0">
                 <div 
-                  className="w-full h-full"
+                  className="w-full h-full bg-cover bg-center"
                   style={{
+                    backgroundImage: `url(${image})`,
                     position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0
+                    inset: 0
                   }}
                 >
-                  <div 
-                    className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
-                      index === currentIndex ? 'opacity-100' : 'opacity-0'
-                    }`}
-                    style={{
-                      backgroundImage: `url(${image})`,
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
                 </div>
               </CarouselItem>
             ))}
