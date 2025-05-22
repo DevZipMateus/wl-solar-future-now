@@ -50,3 +50,21 @@
   -webkit-backface-visibility: hidden;
   transition: opacity 1000ms;
 }
+
+/* Remove any gap or padding between carousel slides */
+.embla {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}

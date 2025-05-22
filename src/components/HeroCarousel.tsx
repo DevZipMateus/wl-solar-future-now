@@ -143,15 +143,17 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false, slideInterval 
             skipSnaps: false,
             dragFree: false,
             align: "center",
-            watchDrag: !disableSliding
+            watchDrag: !disableSliding,
+            inViewThreshold: 1, // Ensures full visibility threshold
+            containScroll: "trimSnaps" // Helps with smooth transitions
           }} 
           setApi={setApi}
         >
-          <CarouselContent className="h-full">
+          <CarouselContent className="h-full -mx-0">
             {backgroundImages.map((image, index) => (
               <CarouselItem key={index} className="h-full w-full p-0">
                 <div 
-                  className="w-full h-full bg-cover bg-center"
+                  className="w-full h-full bg-cover bg-center transition-opacity duration-500"
                   style={{
                     backgroundImage: `url(${image})`,
                     position: 'absolute',
