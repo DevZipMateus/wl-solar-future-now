@@ -34,11 +34,16 @@ const Hero = () => {
         <Carousel className="w-full h-full" opts={{ loop: true, duration: 50 }} setApi={setApi}>
           <CarouselContent className="h-full">
             {backgroundImages.map((image, index) => (
-              <CarouselItem key={index} className="h-full w-full">
+              <CarouselItem key={index} className="h-full w-full p-0">
                 <div 
                   className="w-full h-full bg-cover bg-center" 
                   style={{ 
                     backgroundImage: `url(${image})`,
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0
                   }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
