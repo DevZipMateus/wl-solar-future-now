@@ -46,7 +46,7 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false, slideInterval 
     preloadImages();
   }, [backgroundImages]);
 
-  // Setup carousel with improved events for smoother transitions
+  // Setup carousel with improved auto-rotation
   useEffect(() => {
     if (!api || !allImagesLoaded) return;
     
@@ -74,17 +74,20 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false, slideInterval 
       setIsTransitioning(true);
     });
 
-    // Auto-rotation with custom interval - only if sliding is enabled
+    // Auto-rotation implementation for the carousel
     let interval: ReturnType<typeof setInterval> | null = null;
     
     if (!disableSliding) {
+      // Clear any existing interval first to avoid multiple intervals
+      if (interval) clearInterval(interval);
+      
       interval = setInterval(() => {
         if (!isTransitioning && api) {
+          console.log("Auto-advancing carousel to next slide");
           setIsTransitioning(true);
           api.scrollNext();
-          console.log("Auto-advancing carousel with interval:", slideInterval);
         }
-      }, slideInterval); // Use the provided slideInterval
+      }, slideInterval);
       console.log(`Auto-rotation enabled with ${slideInterval}ms interval`);
     } else {
       console.log("Auto-rotation disabled - static images only");
@@ -100,7 +103,7 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false, slideInterval 
         api.off("pointerDown", () => {});
       }
     };
-  }, [api, allImagesLoaded, isTransitioning, disableSliding, slideInterval]);
+  }, [api, allImagesLoaded, disableSliding, slideInterval]);
 
   // Create indicator dots for navigation - only if sliding is not disabled and there are multiple images
   const renderIndicators = () => {
@@ -135,12 +138,11 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false, slideInterval 
         <Carousel 
           className="w-full h-full" 
           opts={{
-            loop: !disableSliding,
+            loop: true, // Always enable loop for smooth rotation
             duration: 800,
             skipSnaps: false,
             dragFree: false,
             align: "center",
-            // Completely disable both sliding and interaction when disableSliding is true
             watchDrag: !disableSliding
           }} 
           setApi={setApi}

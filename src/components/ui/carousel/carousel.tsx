@@ -24,7 +24,7 @@ const Carousel = React.forwardRef<
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
-        watchDrag: true, // Enable drag tracking for better user interaction
+        watchDrag: opts?.watchDrag !== undefined ? opts.watchDrag : true,
       },
       plugins
     );
