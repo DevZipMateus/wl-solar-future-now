@@ -3,7 +3,7 @@ import HeroCarousel from "./HeroCarousel";
 import HeroContent from "./HeroContent";
 
 const Hero = () => {
-  // Ensure exactly three images in the carousel
+  // Usando os caminhos corretos das imagens disponíveis
   const backgroundImages = [
     "/lovable-uploads/eaf01af4-8f95-4215-bdd2-1674d02f3159.png", 
     "/lovable-uploads/8e9e89f6-42b7-4da0-8544-725a86557f56.png", 

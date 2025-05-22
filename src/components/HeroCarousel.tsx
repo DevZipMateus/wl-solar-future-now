@@ -21,6 +21,7 @@ const HeroCarousel = ({ backgroundImages }: HeroCarouselProps) => {
           const img = new Image();
           img.src = src;
           img.onload = () => {
+            console.log(`Image loaded successfully: ${src}`);
             setImagesLoaded(prev => {
               const newState = [...prev];
               newState[index] = true;
@@ -37,6 +38,7 @@ const HeroCarousel = ({ backgroundImages }: HeroCarouselProps) => {
       
       await Promise.all(loadPromises);
       setAllImagesLoaded(true);
+      console.log("All images loaded:", backgroundImages);
     };
     
     preloadImages();
@@ -62,6 +64,7 @@ const HeroCarousel = ({ backgroundImages }: HeroCarouselProps) => {
     api.on("select", updateCurrentIndex);
     api.on("settle", () => {
       setIsTransitioning(false);
+      console.log("Carousel settled at index:", api.selectedScrollSnap());
       updateCurrentIndex(); // Ensure index is correct after animation completes
     });
     api.on("reInit", updateCurrentIndex);
