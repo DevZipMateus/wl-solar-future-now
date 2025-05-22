@@ -64,7 +64,8 @@ const Hero = () => {
       setCurrentIndex(api.selectedScrollSnap());
     });
 
-    api.on("dragStart", () => {
+    // Using 'pointerDown' instead of 'dragStart' which is not a valid event type
+    api.on("pointerDown", () => {
       setIsTransitioning(true);
     });
 
@@ -72,7 +73,7 @@ const Hero = () => {
     const interval = setInterval(() => {
       if (!isTransitioning) {
         setIsTransitioning(true);
-        api.scrollNext({ duration: 800, easing: (t) => 1 - Math.pow(1 - t, 3) }); // Cubic easing
+        api.scrollNext();
       }
     }, 6000); // 6 seconds between slides for better viewing
     
@@ -94,7 +95,7 @@ const Hero = () => {
             onClick={() => {
               if (api) {
                 setIsTransitioning(true);
-                api.scrollTo(index, { duration: 800, easing: (t) => 1 - Math.pow(1 - t, 3) });
+                api.scrollTo(index);
               }
             }}
             aria-label={`Go to slide ${index + 1}`}
@@ -115,7 +116,6 @@ const Hero = () => {
               loop: true,
               duration: 800, // Longer duration for smoother transitions
               skipSnaps: false,
-              easing: (t) => 1 - Math.pow(1 - t, 3), // Cubic easing for smoother motion
               dragFree: false,
               align: "center"
             }} 

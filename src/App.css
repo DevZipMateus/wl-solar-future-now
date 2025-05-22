@@ -47,4 +47,5 @@
   will-change: opacity;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transition: opacity 1000ms;
 }
