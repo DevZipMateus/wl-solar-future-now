@@ -14,8 +14,10 @@ const Hero = () => {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState<boolean[]>([false, false, false]);
+  const [allImagesLoaded, setAllImagesLoaded] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Preload images to ensure they're ready before display
+  // Preload all images before displaying carousel
   useEffect(() => {
     const preloadImages = async () => {
       const loadPromises = backgroundImages.map((src, index) => {
@@ -38,59 +40,125 @@ const Hero = () => {
       });
       
       await Promise.all(loadPromises);
+      setAllImagesLoaded(true);
     };
     
     preloadImages();
   }, []);
 
-  // Setup carousel auto-rotation with improved timing
+  // Setup carousel with improved events for smoother transitions
   useEffect(() => {
-    if (!api) return;
+    if (!api || !allImagesLoaded) return;
     
+    // Track the current slide
     api.on("select", () => {
       setCurrentIndex(api.selectedScrollSnap());
     });
 
+    // Track transition state
+    api.on("settle", () => {
+      setIsTransitioning(false);
+    });
+
+    api.on("reInit", () => {
+      setCurrentIndex(api.selectedScrollSnap());
+    });
+
+    api.on("dragStart", () => {
+      setIsTransitioning(true);
+    });
+
+    // Auto-rotation with improved timing
     const interval = setInterval(() => {
-      api.scrollNext();
-    }, 5000); // 5 seconds between slides
+      if (!isTransitioning) {
+        setIsTransitioning(true);
+        api.scrollNext({ duration: 800, easing: (t) => 1 - Math.pow(1 - t, 3) }); // Cubic easing
+      }
+    }, 6000); // 6 seconds between slides for better viewing
     
     return () => clearInterval(interval);
-  }, [api]);
+  }, [api, allImagesLoaded, isTransitioning]);
+
+  // Create indicator dots for navigation
+  const renderIndicators = () => {
+    return (
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-2 z-20">
+        {backgroundImages.map((_, index) => (
+          <button
+            key={index}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentIndex 
+                ? "bg-wl-yellow scale-110" 
+                : "bg-white/50 hover:bg-white/80"
+            }`}
+            onClick={() => {
+              if (api) {
+                setIsTransitioning(true);
+                api.scrollTo(index, { duration: 800, easing: (t) => 1 - Math.pow(1 - t, 3) });
+              }
+            }}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    );
+  };
 
   return (
-    <section id="inicio" className="relative pt-24 pb-16 md:pt-32 md:pb-24 min-h-screen flex items-center w-full">
+    <section id="inicio" className="relative pt-24 pb-16 md:pt-32 md:pb-24 min-h-screen flex items-center w-full overflow-hidden">
       {/* Background Image Carousel */}
       <div className="absolute inset-0 z-0 overflow-hidden w-full h-full">
-        <Carousel 
-          className="w-full h-full" 
-          opts={{
-            loop: true,
-            duration: 500, // Increased duration for smoother transitions
-            skipSnaps: false
-          }} 
-          setApi={setApi}
-        >
-          <CarouselContent className="h-full">
-            {backgroundImages.map((image, index) => (
-              <CarouselItem key={index} className="h-full w-full p-0">
-                <div 
-                  className={`w-full h-full bg-cover bg-center transition-opacity duration-500 ${imagesLoaded[index] ? 'opacity-100' : 'opacity-0'}`}
-                  style={{
-                    backgroundImage: `url(${image})`,
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0
-                  }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+        {allImagesLoaded ? (
+          <Carousel 
+            className="w-full h-full" 
+            opts={{
+              loop: true,
+              duration: 800, // Longer duration for smoother transitions
+              skipSnaps: false,
+              easing: (t) => 1 - Math.pow(1 - t, 3), // Cubic easing for smoother motion
+              dragFree: false,
+              align: "center"
+            }} 
+            setApi={setApi}
+          >
+            <CarouselContent className="h-full">
+              {backgroundImages.map((image, index) => (
+                <CarouselItem key={index} className="h-full w-full p-0">
+                  <div 
+                    className="w-full h-full"
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0
+                    }}
+                  >
+                    <div 
+                      className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+                        index === currentIndex ? 'opacity-100' : 'opacity-0'
+                      }`}
+                      style={{
+                        backgroundImage: `url(${image})`,
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+        ) : (
+          <div className="w-full h-full bg-gray-900 flex items-center justify-center">
+            <div className="animate-pulse">
+              <div className="h-32 w-32 rounded-full bg-gray-800"></div>
+            </div>
+          </div>
+        )}
+        
+        {/* Navigation Indicators */}
+        {allImagesLoaded && renderIndicators()}
       </div>
 
       {/* Content */}
@@ -121,7 +189,7 @@ const Hero = () => {
         </div>
       </div>
       
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent z-10"></div>
     </section>
   );
 };

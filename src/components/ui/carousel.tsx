@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -60,7 +61,7 @@ const Carousel = React.forwardRef<
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
-        watchDrag: false, // Disable drag tracking which can cause issues
+        watchDrag: true, // Enable drag tracking for better user interaction
       },
       plugins
     )
@@ -117,7 +118,7 @@ const Carousel = React.forwardRef<
       api.on("reInit", onSelect)
       api.on("select", onSelect)
 
-      // Additional event to help with image transitions
+      // Additional events for transition handling
       api.on("settle", () => {
         console.log("Carousel settled at index:", api.selectedScrollSnap())
       })

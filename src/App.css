@@ -1,5 +1,4 @@
 
-
 /* Remove the max-width and padding restrictions for the root element */
 #root {
   width: 100%;
@@ -43,3 +42,9 @@
   transition: opacity 0.5s ease;
 }
 
+/* Add smooth cross-fade transitions for background images */
+.bg-cover {
+  will-change: opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
