@@ -1,9 +1,11 @@
 
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { 
   Carousel,
   CarouselContent,
   CarouselItem,
+  type CarouselApi
 } from "@/components/ui/carousel";
 
 const Hero = () => {
@@ -13,11 +15,23 @@ const Hero = () => {
     "/lovable-uploads/eaf01af4-8f95-4215-bdd2-1674d02f3159.png",
   ];
   
+  const [api, setApi] = useState<CarouselApi | null>(null);
+
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [api]);
+  
   return (
     <section id="inicio" className="relative pt-24 pb-16 md:pt-32 md:pb-24 min-h-screen flex items-center">
       {/* Background Image Carousel */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <Carousel className="w-full h-full" opts={{ loop: true, duration: 50 }} autoplay={true}>
+        <Carousel className="w-full h-full" opts={{ loop: true, duration: 50 }} setApi={setApi}>
           <CarouselContent className="h-full">
             {backgroundImages.map((image, index) => (
               <CarouselItem key={index} className="h-full w-full">
