@@ -5,7 +5,7 @@ import {
   Building2, 
   FileText, 
   Settings,
-  Tool
+  Wrench // Replacing Tool with Wrench which is available in lucide-react
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -30,7 +30,7 @@ const Services = () => {
     {
       title: "Instalação",
       description: "Instalação completa do sistema fotovoltaico por equipe especializada e certificada.",
-      icon: <Tool className="h-10 w-10 text-wl-yellow" />
+      icon: <Wrench className="h-10 w-10 text-wl-yellow" /> // Changed from Tool to Wrench
     },
     {
       title: "Manutenção",
