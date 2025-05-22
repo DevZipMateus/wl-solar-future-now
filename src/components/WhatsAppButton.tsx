@@ -1,5 +1,4 @@
 
-import { MessageCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const WhatsAppButton = () => {
@@ -33,12 +32,18 @@ const WhatsAppButton = () => {
       href="https://wa.me/5599557123"
       target="_blank"
       rel="noopener noreferrer"
-      className={`fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg z-50 transition-all duration-300 hover:bg-green-600 ${
+      className={`fixed bottom-6 right-6 bg-green-500 text-white p-3 rounded-full shadow-lg z-50 transition-all duration-300 hover:bg-green-600 ${
         isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
       }`}
       aria-label="Contato via WhatsApp"
     >
-      <MessageCircle size={28} />
+      <img 
+        src="/lovable-uploads/whatsapp1.png" 
+        alt="WhatsApp" 
+        width="30" 
+        height="30" 
+        className="w-[30px] h-[30px]"
+      />
     </a>
   );
 };
