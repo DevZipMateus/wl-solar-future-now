@@ -46,7 +46,6 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false }: HeroCarousel
   }, [backgroundImages]);
 
   // Setup carousel with improved events for smoother transitions
-  // Only setup auto-rotation if sliding is not disabled
   useEffect(() => {
     if (!api || !allImagesLoaded) return;
     
@@ -84,6 +83,9 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false }: HeroCarousel
           api.scrollNext();
         }
       }, 6000); // 6 seconds between slides for better viewing
+      console.log("Auto-rotation enabled with 6-second interval");
+    } else {
+      console.log("Auto-rotation disabled");
     }
     
     return () => {
