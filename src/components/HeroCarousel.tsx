@@ -136,8 +136,8 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false }: HeroCarousel
             skipSnaps: false,
             dragFree: false,
             align: "center",
-            // Disable dragging if sliding is disabled
-            draggable: !disableSliding
+            // Use watchDrag instead of draggable to control drag behavior
+            watchDrag: !disableSliding
           }} 
           setApi={setApi}
         >
