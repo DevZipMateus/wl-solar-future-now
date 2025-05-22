@@ -50,34 +50,47 @@ const Hero = () => {
   useEffect(() => {
     if (!api || !allImagesLoaded) return;
     
-    // Track the current slide
-    api.on("select", () => {
-      setCurrentIndex(api.selectedScrollSnap());
-    });
+    // Track the current slide index accurately
+    const updateCurrentIndex = () => {
+      if (api) {
+        const index = api.selectedScrollSnap();
+        console.log("Current slide index:", index);
+        setCurrentIndex(index);
+      }
+    };
 
-    // Track transition state
+    // Initialize the index
+    updateCurrentIndex();
+    
+    // Setup all necessary event handlers
+    api.on("select", updateCurrentIndex);
     api.on("settle", () => {
       setIsTransitioning(false);
+      updateCurrentIndex(); // Ensure index is correct after animation completes
     });
-
-    api.on("reInit", () => {
-      setCurrentIndex(api.selectedScrollSnap());
-    });
-
-    // Using 'pointerDown' instead of 'dragStart' which is not a valid event type
+    api.on("reInit", updateCurrentIndex);
     api.on("pointerDown", () => {
       setIsTransitioning(true);
     });
 
     // Auto-rotation with improved timing
     const interval = setInterval(() => {
-      if (!isTransitioning) {
+      if (!isTransitioning && api) {
         setIsTransitioning(true);
         api.scrollNext();
       }
     }, 6000); // 6 seconds between slides for better viewing
     
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      // Clean up all event listeners
+      if (api) {
+        api.off("select", updateCurrentIndex);
+        api.off("settle", () => {});
+        api.off("reInit", updateCurrentIndex);
+        api.off("pointerDown", () => {});
+      }
+    };
   }, [api, allImagesLoaded, isTransitioning]);
 
   // Create indicator dots for navigation
@@ -114,7 +127,7 @@ const Hero = () => {
             className="w-full h-full" 
             opts={{
               loop: true,
-              duration: 800, // Longer duration for smoother transitions
+              duration: 800,
               skipSnaps: false,
               dragFree: false,
               align: "center"
