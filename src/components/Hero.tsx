@@ -28,9 +28,9 @@ const Hero = () => {
   }, [api]);
   
   return (
-    <section id="inicio" className="relative pt-24 pb-16 md:pt-32 md:pb-24 min-h-screen flex items-center">
+    <section id="inicio" className="relative pt-24 pb-16 md:pt-32 md:pb-24 min-h-screen flex items-center w-full">
       {/* Background Image Carousel */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 z-0 overflow-hidden w-full h-full">
         <Carousel className="w-full h-full" opts={{ loop: true, duration: 50 }} setApi={setApi}>
           <CarouselContent className="h-full">
             {backgroundImages.map((image, index) => (
