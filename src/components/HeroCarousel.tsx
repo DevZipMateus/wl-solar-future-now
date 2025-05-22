@@ -4,9 +4,10 @@ import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/com
 
 interface HeroCarouselProps {
   backgroundImages: string[];
+  disableSliding?: boolean; // Added new prop
 }
 
-const HeroCarousel = ({ backgroundImages }: HeroCarouselProps) => {
+const HeroCarousel = ({ backgroundImages, disableSliding = false }: HeroCarouselProps) => {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(Array(backgroundImages.length).fill(false));
@@ -45,6 +46,7 @@ const HeroCarousel = ({ backgroundImages }: HeroCarouselProps) => {
   }, [backgroundImages]);
 
   // Setup carousel with improved events for smoother transitions
+  // Only setup auto-rotation if sliding is not disabled
   useEffect(() => {
     if (!api || !allImagesLoaded) return;
     
@@ -72,16 +74,20 @@ const HeroCarousel = ({ backgroundImages }: HeroCarouselProps) => {
       setIsTransitioning(true);
     });
 
-    // Auto-rotation with improved timing
-    const interval = setInterval(() => {
-      if (!isTransitioning && api) {
-        setIsTransitioning(true);
-        api.scrollNext();
-      }
-    }, 6000); // 6 seconds between slides for better viewing
+    // Auto-rotation with improved timing - only if sliding is enabled
+    let interval: ReturnType<typeof setInterval> | null = null;
+    
+    if (!disableSliding) {
+      interval = setInterval(() => {
+        if (!isTransitioning && api) {
+          setIsTransitioning(true);
+          api.scrollNext();
+        }
+      }, 6000); // 6 seconds between slides for better viewing
+    }
     
     return () => {
-      clearInterval(interval);
+      if (interval) clearInterval(interval);
       // Clean up all event listeners
       if (api) {
         api.off("select", updateCurrentIndex);
@@ -90,10 +96,12 @@ const HeroCarousel = ({ backgroundImages }: HeroCarouselProps) => {
         api.off("pointerDown", () => {});
       }
     };
-  }, [api, allImagesLoaded, isTransitioning]);
+  }, [api, allImagesLoaded, isTransitioning, disableSliding]);
 
-  // Create indicator dots for navigation
+  // Create indicator dots for navigation - only if sliding is not disabled and there are multiple images
   const renderIndicators = () => {
+    if (disableSliding || backgroundImages.length <= 1) return null;
+    
     return (
       <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-2 z-20">
         {backgroundImages.map((_, index) => (
@@ -123,11 +131,13 @@ const HeroCarousel = ({ backgroundImages }: HeroCarouselProps) => {
         <Carousel 
           className="w-full h-full" 
           opts={{
-            loop: true,
+            loop: !disableSliding,
             duration: 800,
             skipSnaps: false,
             dragFree: false,
-            align: "center"
+            align: "center",
+            // Disable dragging if sliding is disabled
+            draggable: !disableSliding
           }} 
           setApi={setApi}
         >
@@ -156,7 +166,7 @@ const HeroCarousel = ({ backgroundImages }: HeroCarouselProps) => {
         </div>
       )}
       
-      {/* Navigation Indicators */}
+      {/* Navigation Indicators - only shown when sliding is enabled */}
       {allImagesLoaded && renderIndicators()}
     </div>
   );
