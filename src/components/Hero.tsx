@@ -4,61 +4,64 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
-  CarouselNext
 } from "@/components/ui/carousel";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const Hero = () => {
-  const images = [
-    "/lovable-uploads/1610c51f-327c-42ab-a658-76ca5e4f29f4.png",
-    "/lovable-uploads/475d8185-2496-42ef-93d1-b86da422edd7.png",
-    "/lovable-uploads/f3550bfc-bf54-4241-bed0-cb0bcf51c3be.png",
-    "/lovable-uploads/6ebb5d3b-a4fb-4799-8a66-a5a8f1348ae1.png"
+  const backgroundImages = [
+    "/lovable-uploads/1be4aba6-22f7-4e8c-8e73-e3eb18e59acd.png",
+    "/lovable-uploads/8e9e89f6-42b7-4da0-8544-725a86557f56.png",
+    "/lovable-uploads/eaf01af4-8f95-4215-bdd2-1674d02f3159.png",
   ];
   
   return (
-    <section id="inicio" className="relative bg-gradient-to-b from-white to-gray-100 pt-24 pb-16 md:pt-32 md:pb-24">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="w-full md:w-1/2 md:pr-8 mb-8 md:mb-0">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-wl-blue mb-4">
+    <section id="inicio" className="relative pt-24 pb-16 md:pt-32 md:pb-24 min-h-screen flex items-center">
+      {/* Background Image Carousel */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <Carousel className="w-full h-full" opts={{ loop: true, duration: 50 }} autoplay={true}>
+          <CarouselContent className="h-full">
+            {backgroundImages.map((image, index) => (
+              <CarouselItem key={index} className="h-full w-full">
+                <div 
+                  className="w-full h-full bg-cover bg-center" 
+                  style={{ 
+                    backgroundImage: `url(${image})`,
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      </div>
+
+      {/* Content */}
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="flex flex-col items-center text-center mb-12">
+          <img 
+            src="/lovable-uploads/77acc533-a9ee-43f8-8178-e7c03f9429ec.png" 
+            alt="WL Energia Solar Logo" 
+            className="h-24 md:h-32 mb-8 animate-fade-in" 
+          />
+        </div>
+        
+        <div className="flex flex-col md:flex-row items-center justify-center bg-black/50 backdrop-blur-sm rounded-xl p-6 md:p-10">
+          <div className="w-full md:w-2/3 md:pr-8 mb-8 md:mb-0">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 animate-fade-in">
               O Seu futuro começa agora
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 mb-8">
+            <p className="text-lg md:text-xl text-gray-200 mb-8 animate-fade-in delay-100">
               A WL Energia Solar oferece soluções completas em energia solar para sua casa ou empresa em São Gabriel - RS e região.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-wl-blue text-white hover:bg-wl-yellow hover:text-wl-blue transition-all text-lg px-8 py-6">
+            <div className="flex flex-col sm:flex-row gap-4 animate-fade-in delay-200">
+              <Button className="bg-wl-yellow text-wl-blue hover:bg-white hover:text-wl-blue transition-all text-lg px-8 py-6">
                 <a href="#servicos">Nossos Serviços</a>
               </Button>
-              <Button variant="outline" className="border-wl-blue text-wl-blue hover:bg-wl-blue hover:text-white transition-all text-lg px-8 py-6">
+              <Button variant="outline" className="border-wl-yellow text-white hover:bg-wl-yellow hover:text-wl-blue transition-all text-lg px-8 py-6">
                 <a href="https://wa.me/5599557123" target="_blank" rel="noopener noreferrer">
                   Solicitar Orçamento
                 </a>
               </Button>
-            </div>
-          </div>
-          <div className="w-full md:w-1/2">
-            <div className="relative">
-              <div className="absolute -inset-4 rounded-full bg-wl-yellow/20 blur-xl"></div>
-              <Carousel className="w-full max-w-md mx-auto">
-                <CarouselContent>
-                  {images.map((image, index) => (
-                    <CarouselItem key={index}>
-                      <AspectRatio ratio={4/3} className="bg-muted">
-                        <img 
-                          src={image} 
-                          alt={`Painéis solares instalados ${index + 1}`} 
-                          className="rounded-2xl shadow-xl object-cover w-full h-full animate-float"
-                        />
-                      </AspectRatio>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="left-0" />
-                <CarouselNext className="right-0" />
-              </Carousel>
             </div>
           </div>
         </div>
