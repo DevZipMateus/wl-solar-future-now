@@ -5,9 +5,10 @@ import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/com
 interface HeroCarouselProps {
   backgroundImages: string[];
   disableSliding?: boolean;
+  slideInterval?: number; // Added slideInterval prop
 }
 
-const HeroCarousel = ({ backgroundImages, disableSliding = false }: HeroCarouselProps) => {
+const HeroCarousel = ({ backgroundImages, disableSliding = false, slideInterval = 6000 }: HeroCarouselProps) => {
   const [api, setApi] = useState<CarouselApi | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(Array(backgroundImages.length).fill(false));
@@ -73,7 +74,7 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false }: HeroCarousel
       setIsTransitioning(true);
     });
 
-    // Auto-rotation with improved timing - only if sliding is enabled
+    // Auto-rotation with custom interval - only if sliding is enabled
     let interval: ReturnType<typeof setInterval> | null = null;
     
     if (!disableSliding) {
@@ -81,9 +82,10 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false }: HeroCarousel
         if (!isTransitioning && api) {
           setIsTransitioning(true);
           api.scrollNext();
+          console.log("Auto-advancing carousel with interval:", slideInterval);
         }
-      }, 6000); // 6 seconds between slides for better viewing
-      console.log("Auto-rotation enabled with 6-second interval");
+      }, slideInterval); // Use the provided slideInterval
+      console.log(`Auto-rotation enabled with ${slideInterval}ms interval`);
     } else {
       console.log("Auto-rotation disabled - static images only");
     }
@@ -98,7 +100,7 @@ const HeroCarousel = ({ backgroundImages, disableSliding = false }: HeroCarousel
         api.off("pointerDown", () => {});
       }
     };
-  }, [api, allImagesLoaded, isTransitioning, disableSliding]);
+  }, [api, allImagesLoaded, isTransitioning, disableSliding, slideInterval]);
 
   // Create indicator dots for navigation - only if sliding is not disabled and there are multiple images
   const renderIndicators = () => {
