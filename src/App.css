@@ -1,4 +1,5 @@
 
+
 /* Remove the max-width and padding restrictions for the root element */
 #root {
   width: 100%;
@@ -36,3 +37,9 @@
   width: 100%;
   max-width: 100%;
 }
+
+/* Add carousel image transitions */
+.embla__slide {
+  transition: opacity 0.5s ease;
+}
+

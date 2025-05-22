@@ -1,4 +1,3 @@
-
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -61,6 +60,7 @@ const Carousel = React.forwardRef<
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
+        watchDrag: false, // Disable drag tracking which can cause issues
       },
       plugins
     )
@@ -77,11 +77,15 @@ const Carousel = React.forwardRef<
     }, [])
 
     const scrollPrev = React.useCallback(() => {
-      api?.scrollPrev()
+      api?.scrollPrev({
+        duration: 500, // Add a consistent duration for manual navigation
+      })
     }, [api])
 
     const scrollNext = React.useCallback(() => {
-      api?.scrollNext()
+      api?.scrollNext({
+        duration: 500, // Add a consistent duration for manual navigation
+      })
     }, [api])
 
     const handleKeyDown = React.useCallback(
@@ -110,12 +114,22 @@ const Carousel = React.forwardRef<
         return
       }
 
+      // Initialize immediately on mount
       onSelect(api)
+      
+      // Setup event listeners
       api.on("reInit", onSelect)
       api.on("select", onSelect)
 
+      // Additional event to help with image transitions
+      api.on("settle", () => {
+        console.log("Carousel settled at index:", api.selectedScrollSnap())
+      })
+
       return () => {
         api?.off("select", onSelect)
+        api?.off("reInit", onSelect)
+        api?.off("settle", () => {})
       }
     }, [api, onSelect])
 
