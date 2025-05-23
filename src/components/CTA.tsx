@@ -1,9 +1,6 @@
-
 import { Button } from "@/components/ui/button";
-
 const CTA = () => {
-  return (
-    <section className="py-16 bg-wl-blue text-white relative overflow-hidden">
+  return <section className="py-16 bg-wl-blue text-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-wl-yellow opacity-10 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-wl-yellow opacity-10 rounded-full translate-x-1/3 translate-y-1/3"></div>
@@ -22,7 +19,7 @@ const CTA = () => {
                 Solicitar Orçamento
               </a>
             </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-wl-blue transition-all text-lg px-8 py-6">
+            <Button variant="outline" className="bg-white text-wl-blue hover:bg-wl-yellow hover:text-wl-blue transition-all text-lg px-8 py-6">
               <a href="#contato">
                 Entre em Contato
               </a>
@@ -30,8 +27,6 @@ const CTA = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default CTA;
