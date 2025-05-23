@@ -1,4 +1,3 @@
-
 import { 
   Sun, 
   Home, 
@@ -18,8 +17,8 @@ const Services = () => {
       icon: <Home className="h-10 w-10 text-wl-yellow" />
     },
     {
-      title: "Empresarial",
-      description: "Soluções para empresas e indústrias que desejam reduzir custos operacionais e investir em sustentabilidade.",
+      title: "Rural",
+      description: "Soluções para propriedades rurais, agronegócios e atividades agrícolas que desejam reduzir custos operacionais e investir em sustentabilidade.",
       icon: <Building2 className="h-10 w-10 text-wl-yellow" />
     },
     {
