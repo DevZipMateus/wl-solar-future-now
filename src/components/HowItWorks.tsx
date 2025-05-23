@@ -87,7 +87,7 @@ const HowItWorks = () => {
               <img 
                 src="/lovable-uploads/e88033a2-35ce-4e84-ae91-eadaf211c7ca.png" 
                 alt="Sistema de energia solar residencial" 
-                className="w-full h-auto rounded-lg shadow-md"
+                className="w-full md:w-[120%] h-auto rounded-lg shadow-md"
               />
             </div>
           </div>
