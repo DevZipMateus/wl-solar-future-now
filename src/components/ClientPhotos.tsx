@@ -1,0 +1,68 @@
+
+import { useState } from "react";
+
+const ClientPhotos = () => {
+  const clientImages = [
+    "/lovable-uploads/3014551715372122.jpeg",
+    "/lovable-uploads/562456979955544.jpeg",
+    "/lovable-uploads/2083876972145854.jpeg",
+    "/lovable-uploads/634769199593000.jpeg",
+    "/lovable-uploads/1953609308818847.jpeg",
+    "/lovable-uploads/592108736688993.jpeg",
+    "/lovable-uploads/722986786778583.jpeg",
+    "/lovable-uploads/553176547859616.jpeg",
+    "/lovable-uploads/1423315542137942.jpeg",
+    "/lovable-uploads/679597208287623.jpeg",
+    "/lovable-uploads/683933470927873.jpeg",
+    "/lovable-uploads/2420711141647004.jpeg",
+    "/lovable-uploads/2076756719457892.jpeg",
+    "/lovable-uploads/1415062846337063.jpeg",
+    "/lovable-uploads/549978797991857.jpeg"
+  ];
+
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+
+  const handleImageLoad = (src: string) => {
+    setLoadedImages(prev => new Set(prev).add(src));
+  };
+
+  return (
+    <section className="py-16 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-wl-blue mb-4">
+            Nossos Clientes Satisfeitos
+          </h2>
+          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+            Veja alguns dos sistemas de energia solar que instalamos para nossos clientes em São Gabriel - RS e região
+          </p>
+          <div className="w-24 h-1 bg-wl-yellow mx-auto mt-4"></div>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {clientImages.map((image, index) => (
+            <div key={index} className="aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <img
+                src={image}
+                alt={`Sistema de energia solar instalado - Cliente ${index + 1}`}
+                className={`w-full h-full object-cover hover:scale-105 transition-transform duration-300 ${
+                  loadedImages.has(image) ? 'opacity-100' : 'opacity-0'
+                }`}
+                onLoad={() => handleImageLoad(image)}
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center mt-8">
+          <p className="text-gray-600">
+            Quer fazer parte desta galeria? Entre em contato conosco e solicite seu orçamento!
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ClientPhotos;
