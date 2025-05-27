@@ -10,7 +10,7 @@ const About = () => {
 
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="w-full md:w-1/2">
-            <img alt="Equipe WL Energia Solar" className="rounded-lg shadow-lg w-full h-auto object-cover" src="public/lovable-uploads/671225a6-7205-4a30-a8ce-a37f0916de6b.jpg" />
+            <img alt="Equipe WL Energia Solar" className="rounded-lg shadow-lg w-full h-auto object-cover" src="/lovable-uploads/ef27f049-4dfc-4bad-84fe-e46b0544d157.jpg" />
           </div>
 
           <div className="w-full md:w-1/2">
