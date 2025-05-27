@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Instagram } from "lucide-react";
+import { Instagram, Camera } from "lucide-react";
 
 const HeroContent = () => {
   return (
@@ -31,6 +31,10 @@ const HeroContent = () => {
               <a href="https://www.instagram.com/wlenergia.solar/" target="_blank" rel="noopener noreferrer">
                 Ver Projetos
               </a>
+            </Button>
+            <Button className="bg-green-600 text-white hover:bg-green-700 transition-all text-lg px-8 py-6 flex items-center gap-2">
+              <Camera size={20} />
+              <a href="#galeria">Ver Galeria</a>
             </Button>
           </div>
         </div>
