@@ -43,7 +43,8 @@ const Footer = () => {
               <ul className="space-y-2">
                 <li>Rua Tristão Pinto, 191</li>
                 <li>São Gabriel - RS</li>
-                <li><a href="tel:5599557123" className="hover:text-wl-yellow transition-colors">(55) 99955-7123</a></li>
+                <li><a href="tel:5596527090" className="hover:text-wl-yellow transition-colors">(55) 9652-7090</a></li>
+                <li><a href="tel:5599557123" className="hover:text-wl-yellow transition-colors">(55) 9955-7123</a></li>
                 <li><a href="mailto:wlenergiasolardion@gmail.com" className="hover:text-wl-yellow transition-colors">wlenergiasolardion@gmail.com</a></li>
               </ul>
             </div>

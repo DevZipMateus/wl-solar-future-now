@@ -25,13 +25,21 @@ const Contact = () => {
               <div className="bg-wl-blue text-white p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                 <Phone size={24} />
               </div>
-              <h4 className="font-semibold mb-2 text-wl-blue">Telefone</h4>
-              <a 
-                href="tel:5599557123" 
-                className="text-gray-700 hover:text-wl-blue transition-colors"
-              >
-                (55) 99955-7123
-              </a>
+              <h4 className="font-semibold mb-2 text-wl-blue">Telefones</h4>
+              <div className="space-y-1">
+                <a 
+                  href="tel:5596527090" 
+                  className="block text-gray-700 hover:text-wl-blue transition-colors"
+                >
+                  (55) 9652-7090
+                </a>
+                <a 
+                  href="tel:5599557123" 
+                  className="block text-gray-700 hover:text-wl-blue transition-colors"
+                >
+                  (55) 9955-7123
+                </a>
+              </div>
             </div>
             
             <div className="text-center">
