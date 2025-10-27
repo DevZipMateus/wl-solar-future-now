@@ -8,7 +8,7 @@ const ClientPhotos = () => {
     "/lovable-uploads/3014551715372122.jpeg",
     "/lovable-uploads/562456979955544.jpeg",
     "/lovable-uploads/2083876972145854.jpeg",
-    "/lovable-uploads/634769199593000.jpeg",
+
     "/lovable-uploads/1953609308818847.jpeg",
     "/lovable-uploads/592108736688993.jpeg",
     "/lovable-uploads/722986786778583.jpeg",
@@ -21,7 +21,7 @@ const ClientPhotos = () => {
     "/lovable-uploads/1415062846337063.jpeg",
     "/lovable-uploads/549978797991857.jpeg",
     "/lovable-uploads/1757225258204705.jpeg",
-    "/lovable-uploads/1200779881827279.jpeg"
+    "/lovable-uploads/1200779881827279.jpeg",
   ];
 
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
@@ -29,7 +29,7 @@ const ClientPhotos = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleImageLoad = (src: string) => {
-    setLoadedImages(prev => new Set(prev).add(src));
+    setLoadedImages((prev) => new Set(prev).add(src));
   };
 
   const handleImageClick = (index: number) => {
@@ -38,24 +38,18 @@ const ClientPhotos = () => {
   };
 
   const handlePrevious = () => {
-    setSelectedImageIndex(prev => 
-      prev === 0 ? clientImages.length - 1 : prev - 1
-    );
+    setSelectedImageIndex((prev) => (prev === 0 ? clientImages.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    setSelectedImageIndex(prev => 
-      prev === clientImages.length - 1 ? 0 : prev + 1
-    );
+    setSelectedImageIndex((prev) => (prev === clientImages.length - 1 ? 0 : prev + 1));
   };
 
   return (
     <section id="galeria" className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-wl-blue mb-4">
-            Nossos Clientes Satisfeitos
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-wl-blue mb-4">Nossos Clientes Satisfeitos</h2>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
             Veja alguns dos sistemas de energia solar que instalamos para nossos clientes em São Gabriel - RS e região
           </p>
@@ -64,8 +58,8 @@ const ClientPhotos = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {clientImages.map((image, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer"
               onClick={() => handleImageClick(index)}
             >
@@ -73,7 +67,7 @@ const ClientPhotos = () => {
                 src={image}
                 alt={`Sistema de energia solar instalado - Cliente ${index + 1}`}
                 className={`w-full h-full object-cover hover:scale-105 transition-transform duration-300 ${
-                  loadedImages.has(image) ? 'opacity-100' : 'opacity-0'
+                  loadedImages.has(image) ? "opacity-100" : "opacity-0"
                 }`}
                 onLoad={() => handleImageLoad(image)}
                 loading="lazy"
@@ -99,7 +93,7 @@ const ClientPhotos = () => {
               >
                 <X className="h-6 w-6" />
               </Button>
-              
+
               <Button
                 variant="ghost"
                 size="icon"
