@@ -10,6 +10,7 @@ const About = () => {
     { src: "/lovable-uploads/treinamento-greener.jpeg", alt: "Treinamento da equipe na Greener" },
     { src: "/lovable-uploads/equipe-stand.jpeg", alt: "Equipe WL Energia Solar em evento" },
     { src: "/lovable-uploads/evento-aldo-solar.jpeg", alt: "Participação em evento Aldo Solar" },
+    { src: "/lovable-uploads/evento-goodwe.jpeg", alt: "Participação em evento Goodwe BloombergNEF" },
   ];
   return <section id="sobre" className="py-16 bg-white">
       <div className="container mx-auto px-4">
