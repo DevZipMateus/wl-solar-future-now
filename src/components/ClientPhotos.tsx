@@ -15,10 +15,11 @@ const ClientPhotos = () => {
     "/lovable-uploads/679597208287623.jpeg",
     "/lovable-uploads/683933470927873.jpeg",
     "/lovable-uploads/2420711141647004.jpeg",
-    
     "/lovable-uploads/1415062846337063.jpeg",
     "/lovable-uploads/549978797991857.jpeg",
     "/lovable-uploads/1757225258204705.jpeg",
+    "/lovable-uploads/whatsapp-client-gym.jpeg",
+    "/lovable-uploads/whatsapp-client-outdoor.jpeg",
   ];
 
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
