@@ -15,7 +15,7 @@ const FeaturedVideos = () => {
     },
     {
       src: "/lovable-uploads/projeto-03.mp4",
-      title: "Sistema Off-Grid Rural",
+      title: "Sistema em Zona Rural",
       description: "Energia sustentável para áreas remotas"
     }
   ];
