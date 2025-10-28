@@ -29,7 +29,7 @@ const About = () => {
                       <img 
                         src={image.src} 
                         alt={image.alt} 
-                        className="w-full h-[400px] object-cover"
+                        className="w-full h-[400px] object-contain bg-gray-100"
                       />
                     </div>
                   </CarouselItem>
