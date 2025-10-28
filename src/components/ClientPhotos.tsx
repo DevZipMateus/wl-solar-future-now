@@ -16,6 +16,12 @@ const ClientPhotos = () => {
     "/lovable-uploads/2420711141647004.jpeg",
     "/lovable-uploads/1415062846337063.jpeg",
     "/lovable-uploads/549978797991857.jpeg",
+    "/lovable-uploads/academia-funcional-training.jpeg",
+    "/lovable-uploads/lang-festt.jpeg",
+    "/lovable-uploads/padaria-fofis.jpeg",
+    "/lovable-uploads/sabor-e-arte.jpeg",
+    "/lovable-uploads/ricardo-moura.jpeg",
+    "/lovable-uploads/isaura-ramires.jpeg",
   ];
 
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
