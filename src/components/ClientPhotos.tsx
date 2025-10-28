@@ -11,7 +11,6 @@ const ClientPhotos = () => {
     "/lovable-uploads/592108736688993.jpeg",
     "/lovable-uploads/722986786778583.jpeg",
     "/lovable-uploads/553176547859616.jpeg",
-    "/lovable-uploads/1423315542137942.jpeg",
     "/lovable-uploads/679597208287623.jpeg",
     "/lovable-uploads/683933470927873.jpeg",
     "/lovable-uploads/2420711141647004.jpeg",
