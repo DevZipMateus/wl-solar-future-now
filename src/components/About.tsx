@@ -1,6 +1,16 @@
 import { CheckCircle } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel/index";
+
 const About = () => {
   const benefits = ["Economia de até 95% na conta de luz", "Valorização do seu imóvel", "Energia limpa e renovável", "Baixa manutenção", "Durabilidade de mais de 25 anos"];
+  
+  const carouselImages = [
+    { src: "/lovable-uploads/evento-huawei.jpeg", alt: "Participação em evento Huawei FusionSolar" },
+    { src: "/lovable-uploads/reuniao-equipe.jpeg", alt: "Reunião técnica da equipe WL Energia Solar" },
+    { src: "/lovable-uploads/treinamento-greener.jpeg", alt: "Treinamento da equipe na Greener" },
+    { src: "/lovable-uploads/equipe-stand.jpeg", alt: "Equipe WL Energia Solar em evento" },
+    { src: "/lovable-uploads/evento-aldo-solar.jpeg", alt: "Participação em evento Aldo Solar" },
+  ];
   return <section id="sobre" className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
@@ -10,7 +20,23 @@ const About = () => {
 
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="w-full md:w-1/2">
-            <img alt="Equipe WL Energia Solar" className="rounded-lg shadow-lg w-full h-auto object-cover" src="/lovable-uploads/ef27f049-4dfc-4bad-84fe-e46b0544d157.jpg" />
+            <Carousel className="w-full" opts={{ loop: true }}>
+              <CarouselContent>
+                {carouselImages.map((image, index) => (
+                  <CarouselItem key={index}>
+                    <div className="rounded-lg overflow-hidden shadow-lg">
+                      <img 
+                        src={image.src} 
+                        alt={image.alt} 
+                        className="w-full h-[400px] object-cover"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-4" />
+              <CarouselNext className="right-4" />
+            </Carousel>
           </div>
 
           <div className="w-full md:w-1/2">
