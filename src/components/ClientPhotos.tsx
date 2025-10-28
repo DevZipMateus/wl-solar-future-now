@@ -5,10 +5,8 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 const ClientPhotos = () => {
   const clientImages = [
-    "/lovable-uploads/3014551715372122.jpeg",
     "/lovable-uploads/562456979955544.jpeg",
     "/lovable-uploads/2083876972145854.jpeg",
-
     "/lovable-uploads/1953609308818847.jpeg",
     "/lovable-uploads/592108736688993.jpeg",
     "/lovable-uploads/722986786778583.jpeg",
@@ -17,11 +15,10 @@ const ClientPhotos = () => {
     "/lovable-uploads/679597208287623.jpeg",
     "/lovable-uploads/683933470927873.jpeg",
     "/lovable-uploads/2420711141647004.jpeg",
-    "/lovable-uploads/2076756719457892.jpeg",
+    
     "/lovable-uploads/1415062846337063.jpeg",
     "/lovable-uploads/549978797991857.jpeg",
     "/lovable-uploads/1757225258204705.jpeg",
-    "/lovable-uploads/1200779881827279.jpeg",
   ];
 
   const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
