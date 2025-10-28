@@ -5,12 +5,12 @@ const About = () => {
   const benefits = ["Economia de até 95% na conta de luz", "Valorização do seu imóvel", "Energia limpa e renovável", "Baixa manutenção", "Durabilidade de mais de 25 anos"];
   
   const carouselImages = [
-    { src: "/lovable-uploads/evento-huawei.jpeg", alt: "Participação em evento Huawei FusionSolar" },
-    { src: "/lovable-uploads/reuniao-equipe.jpeg", alt: "Reunião técnica da equipe WL Energia Solar" },
-    { src: "/lovable-uploads/treinamento-greener.jpeg", alt: "Treinamento da equipe na Greener" },
-    { src: "/lovable-uploads/equipe-stand.jpeg", alt: "Equipe WL Energia Solar em evento" },
-    { src: "/lovable-uploads/evento-aldo-solar.jpeg", alt: "Participação em evento Aldo Solar" },
-    { src: "/lovable-uploads/evento-goodwe.jpeg", alt: "Participação em evento Goodwe BloombergNEF" },
+    { src: "/lovable-uploads/evento-huawei.jpeg", alt: "Participação em evento Huawei FusionSolar", objectFit: "contain" },
+    { src: "/lovable-uploads/reuniao-equipe.jpeg", alt: "Reunião técnica da equipe WL Energia Solar", objectFit: "cover" },
+    { src: "/lovable-uploads/treinamento-greener.jpeg", alt: "Treinamento da equipe na Greener", objectFit: "cover" },
+    { src: "/lovable-uploads/equipe-stand.jpeg", alt: "Equipe WL Energia Solar em evento", objectFit: "cover" },
+    { src: "/lovable-uploads/evento-aldo-solar.jpeg", alt: "Participação em evento Aldo Solar", objectFit: "contain" },
+    { src: "/lovable-uploads/evento-goodwe.jpeg", alt: "Participação em evento Goodwe BloombergNEF", objectFit: "contain" },
   ];
   return <section id="sobre" className="py-16 bg-white">
       <div className="container mx-auto px-4">
@@ -29,7 +29,7 @@ const About = () => {
                       <img 
                         src={image.src} 
                         alt={image.alt} 
-                        className="w-full h-[400px] object-contain bg-gray-100"
+                        className={`w-full h-[400px] ${image.objectFit === 'contain' ? 'object-contain bg-gray-100' : 'object-cover'}`}
                       />
                     </div>
                   </CarouselItem>
